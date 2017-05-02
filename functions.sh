@@ -27,6 +27,9 @@ jv_pg_gm_check_traffic() {
             local duration_in_traffic_text=$(echo "$json" | jq -r '.routes[0].legs[0].duration_in_traffic.text')
             local summary=$(echo "$json" | jq -r '.routes[0].summary')
             local difference=$((($duration_in_traffic-$duration)/60))
+            if [ "$difference" -lt "0" ]; then  # Avoid negative values
+                difference=0
+            fi
             echo "$(jv_pg_gm_check_traffic_locale "$FROM" "$TO" "$summary" "$duration_in_traffic_text" "$difference")"
             ;;
         *)
