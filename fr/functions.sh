@@ -2,7 +2,7 @@
 # Jarvis-google-map-traffic French functions
 
 jv_pg_gm_check_traffic_locale() {
-    echo "Le meilleur trajet $FROM-$TO via $summary est estimé à $duration_in_traffic_text dont $difference minutes de retard"
+    echo "Le meilleur trajet $jv_pg_gm_city_from-$jv_pg_gm_city_to via $summary est estimé à $duration_in_traffic_text dont $difference minutes de retard"
 }
 
 jv_pg_gm_invalid_key_locale() {

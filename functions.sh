@@ -3,8 +3,8 @@
 
 jv_pg_gm_check_traffic() {
     
-    if [[ -n "$APIKEY" ]]; then
-        local json=$(curl -s -G "https://maps.googleapis.com/maps/api/directions/json" --data "language=fr" --data-urlencode "origin=$FROM" --data-urlencode "destination=$TO" --data "traffic_model=best_guess" --data "departure_time=now" --data-urlencode "key=$APIKEY")
+    if [[ -n "$jv_pg_gm_api_key" ]]; then
+        local json=$(curl -s -G "https://maps.googleapis.com/maps/api/directions/json" --data "language=fr" --data-urlencode "origin=$jv_pg_gm_city_from" --data-urlencode "destination=$jv_pg_gm_city_to" --data "traffic_model=best_guess" --data "departure_time=now" --data-urlencode "key=$jv_pg_gm_api_key")
         status=$(echo "$json" | jq -r '.status')
     else
         echo $(jv_pg_gm_invalid_key_locale)
